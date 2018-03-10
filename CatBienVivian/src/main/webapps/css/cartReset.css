@@ -1,0 +1,15 @@
+.cd-cart h2, h3, a, em, img, ul, li, footer, header{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+.cd-cart footer, header, section, main {
+	display: block;
+}
+ol, ul {
+	list-style: none;
+}

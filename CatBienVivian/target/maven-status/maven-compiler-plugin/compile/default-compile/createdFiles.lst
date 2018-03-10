@@ -1,0 +1,6 @@
+org\spring\catbienvivian\config\SpringSecurityInitializer.class
+org\spring\catbienvivian\config\SpringWebMVCConfig.class
+org\spring\catbienvivian\controller\MainController.class
+org\spring\catbienvivian\config\SecurityConfig.class
+org\spring\catbienvivian\config\SpringWebAppIntializer.class
+org\spring\catbienvivian\config\DatabaseConfig.class
