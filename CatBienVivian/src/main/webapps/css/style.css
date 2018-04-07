@@ -621,6 +621,11 @@ ul.multi-column-dropdown h6 {
 	padding-left: 0;
 	text-align: center;
 }
+.my_ecommerce_tab_left img {
+	 width:200px; 	
+	 display:block;
+     margin:auto;
+}
 
 .agile_ecommerce_tabs {
 	padding: 2em 0 0;
@@ -925,17 +930,12 @@ ul.multi-column-dropdown h6 {
 .special-deals h2:after, .new-products h3:after, .top-brands h3:after,
 	.w3l_related_products h3:after, .team h3:after, .mail h3:after {
 	content: '';
-	position: absolute;
 	bottom: 79%;
 	right: 43%;
 	background: #212121;
 	height: 1px;
 	width: 10%;
-	transform: rotate(135deg);
-	-webkit-transform: rotate(135deg);
-	-moz-transform: rotate(135deg);
-	-o-transform: rotate(135deg);
-	-ms-transform: rotate(135deg);
+
 }
 
 .w3agile_special_deals_grids {
@@ -960,7 +960,7 @@ ul.multi-column-dropdown h6 {
 }
 
 .w3agile_special_deals_grid_right_pos h4 {
-	color: #ffffff;
+	color: black;
 }
 
 .w3agile_special_deals_grid_right_pos h4 span {
@@ -2999,9 +2999,11 @@ table.timetable_sub {
 .timetable_sub td {
 	border: 1px solid #CDCDCD;
 }
-
+.timetable_sub .image-product{
+	width: 250px;
+}
 td.invert-image a img {
-	width: 30%;
+	width: 40%;
 	margin: 0 auto;
 }
 
@@ -3048,6 +3050,15 @@ td.invert-image a img {
 	float: left;
 	width: 25%;
 }
+
+.checkout-left-basket a{
+	color: black;
+}
+
+.checkout-left-basket a:hover, a:focus{
+	color: white;
+}
+
 
 .checkout-right-basket {
 	float: right;

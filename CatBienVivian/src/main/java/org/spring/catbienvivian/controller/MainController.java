@@ -5,6 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,12 +60,28 @@ public class MainController {
 
 	}
 
+	@RequestMapping(value = "/about", method = RequestMethod.GET)
+	public ModelAndView aboutUsPage() {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("about");
+		return model;
+
+	}
+
 	@RequestMapping(value = "/admin**", method = RequestMethod.GET)
 	public ModelAndView adminPage() {
 
 		ModelAndView model = new ModelAndView();
 		model.setViewName("admin");
 
+		return model;
+
+	}
+	
+	@RequestMapping(value = "/checkout", method = RequestMethod.GET)
+	public ModelAndView checkoutPage() {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("checkout");
 		return model;
 
 	}

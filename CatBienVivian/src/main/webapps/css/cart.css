@@ -7,28 +7,6 @@ Primary style
   box-sizing: border-box;
 }
 
-.cd-add-to-cart {
-
-  display: inline-block;
-  padding: 1.2em 1.8em;
-  background: #2c97de;
-  border-radius: 50em;
-  text-transform: uppercase;
-  color: #ffffff;
-  letter-spacing: .1em;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  -webkit-transition: all .2s;
-  transition: all .2s;
-}
-.cd-add-to-cart:hover {
-  background: #42a2e1;
-}
-.cd-add-to-cart:active {
-  -webkit-transform: scale(0.9);
-      -ms-transform: scale(0.9);
-          transform: scale(0.9);
-}
-
 /* -------------------------------- 
 
 Main Components 
@@ -204,8 +182,8 @@ Main Components
   /* cart content */
   z-index: 2;
   width: 100%;
-  max-width: 440px;
-  height: 400px;
+  max-width: 350px;
+  height: 350px;
   max-height: 100%;
   pointer-events: none;
 }
@@ -258,10 +236,12 @@ Main Components
   background: #ffffff;
 }
 .cd-cart h2 {
-  text-transform: uppercase;
-  display: inline-block;
-  letter-spacing: .1em;
-}
+    text-transform: uppercase;
+    display: inline-block;
+    font-size: 1.0rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    }
 .cd-cart .undo {
   float: right;
   opacity: 0;
@@ -436,7 +416,6 @@ Main Components
 }
 .cd-cart .delete-item, .cd-cart .quantity {
   float: left;
-  color: #808b97;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }

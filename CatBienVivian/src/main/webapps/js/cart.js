@@ -86,22 +86,18 @@ jQuery(document).ready(function($){
 
 			//product
 			var product = {};
-			product.id = 5;
-			product.name = "test5";
-			product.price = "30000";
-			product.quantity = 1;			
+			product.id = trigger.data('id');
+			product.name = trigger.data('name');
+			product.price = trigger.data('price');
+			product.url = trigger.data('url');
+			product.img = trigger.data('img');
+			product.quantity = trigger.data('quantity');		
 
 			for(var index = 0 ; index < cart.products.length; index++){
 				if((cart.products[index].id) == product.id){
-					if(cart.products[index].quantity<9){
-						addExistCart(index);
-						alert('updated successfully');
-						return 'updated successfully';
-					}
-					else{
-						alert('updated failed');
-						return 'updated failed';
-					}
+					addExistCart(index, product.quantity);
+					alert('updated successfully');
+					return 'updated successfully';
 				}
 			}
 
@@ -111,7 +107,6 @@ jQuery(document).ready(function($){
 			updateCartCount(cartIsEmpty);
 			//update total price
 			updateCartTotal(product.price, true);
-
 			//show cart
 			cartWrapper.removeClass('empty');
 			alert('added successfully');
@@ -130,31 +125,18 @@ jQuery(document).ready(function($){
 		var productAdded = $(
 			'<li class="product">'
 			   +'<div class="product-image">'
-			   		+'<a href="#0">'
-					    +'<img src="img/product-preview.png" alt="placeholder">'
-					+'</a>'
+			   +'<a href="'+product.url+'">'
+			   	+'<img src="'+product.img+'" alt="placeholder">'
+			   +'</a>'
 				+'</div>'
 				+'<div class="product-details">'
-					+'<h3><a href="#0">'+ product.name +'</a></h3>'
-					+'<span class="price">'+ product.price +'</span>'
+					+'<h3><a href="'+product.url+'">'+ product.name +'</a></h3>'
+					+'<span id="cd-price-'+ product.id +'" class="price">'+ product.price +'</span>'
 					+'<div hidden class="id">'+ product.id +'</div>'
 					+'<div class="actions">'
-						+'<a href="#0" class="delete-item">Delete</a>'
+						+'<a href="#0" class="delete-item">Xoá</a>'
 						+'<div class="quantity">'
-							+'<label for="cd-product-'+ product.id +'">Qty</label>'
-							+'<span class="select">'
-								+'<select id="cd-product-'+ product.id +'" name="quantity">'
-									+'<option value="1">1</option>'
-									+'<option value="2">2</option>'
-									+'<option value="3">3</option>'
-									+'<option value="4">4</option>'
-									+'<option value="5">5</option>'
-									+'<option value="6">6</option>'
-									+'<option value="7">7</option>'
-									+'<option value="8">8</option>'
-									+'<option value="9">9</option>'
-								+'</select>'
-							+'</span>'
+							+'SL: <label id="cd-quantity-'+ product.id +'">'+ product.quantity +'</label>'
 						+'</div>'
 					+'</div>'
 				+'</div>'
@@ -179,11 +161,9 @@ jQuery(document).ready(function($){
 			var cart = JSON.parse(localStorage.getItem('cart'));     
 
 			var productId = product.find('.id').text();
-			clearInterval(undoTimeoutId);
-			cartList.find('.deleted').remove();
 			
 			var topPosition = product.offset().top - cartBody.children('ul').offset().top ,
-				productQuantity = Number(product.find('.quantity').find('select').val()),
+				productQuantity = Number(product.find('#cd-quantity-'+productId+'').text()),
 				productTotPrice = Number(product.find('.price').text().replace('$', '')) * productQuantity;
 			
 			product.css('top', topPosition+'px').addClass('deleted');
@@ -192,12 +172,6 @@ jQuery(document).ready(function($){
 			updateCartTotal(productTotPrice, false);
 			updateCartCount(true, -productQuantity);
 			undo.addClass('visible');
-
-			//wait 8sec before completely remove the item
-			undoTimeoutId = setTimeout(function(){
-				undo.removeClass('visible');
-				cartList.find('.deleted').remove();
-			}, 8000);
 
 			for(var i = 0 ; i< cart.products.length; i++){
 				if((cart.products[i].id) == productId){
@@ -241,22 +215,22 @@ jQuery(document).ready(function($){
 		}
 	}
 
-	function addExistCart(index) {
+	function addExistCart(index, qty) {
 		if (localStorage && localStorage.getItem('cart')) {
 			var cart = JSON.parse(localStorage.getItem('cart'));            
-			
-			var quantity = 0;
 			var price = 0;
 
-			cart.products[index].quantity += 1; 
-			$('#cd-product-'+cart.products[index].id +' option[value='+ cart.products[index].quantity +']').attr('selected', 'selected');
-
+			cart.products[index].quantity += qty; 
+			cartBody.find('#cd-quantity-'+cart.products[index].id+'').text(cart.products[index].quantity);
+			
+			var quantity = 0;
+			
 			cartList.children('li:not(.deleted)').each(function(){
-				var singleQuantity = Number($(this).find('select').val());
+				var singleQuantity = Number($(this).find('label').text());
 				quantity = quantity + singleQuantity;
-				price = price + singleQuantity*Number($(this).find('.price').text().replace('$', ''));
+				price = price + singleQuantity*Number($(this).find('.price').text());
 			});
-
+			
 			localStorage.setItem('cart', JSON.stringify(cart));
 			cartTotal.text(price.toFixed(2));
 			cartCount.find('li').eq(0).text(quantity);

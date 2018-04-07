@@ -32,6 +32,19 @@
 				</div>
 
 			</div>
+			<div class="col-md-6 w3agile_special_deals_grid_left">
+				<div class="w3agile_special_deals_grid_left_grid">
+					<a href="#" target="_self" title="Đồ Aerobic"> <img
+						class="img-responsive" src="images/aerobic.jpg" alt="Đồ aerobic"></a>
+				</div>
+			</div>
+			<div class="col-md-6 w3agile_special_deals_grid_left">
+				<div class="w3agile_special_deals_grid_left_grid">
+					<a href="#" target="_self" title="Đồ cổ động"> <img
+						class="img-responsive" src="images/cheer.jpg" alt="Đồ cổ động"></a>
+				</div>
+
+			</div>
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -42,11 +55,11 @@
 <!-- special-deals -->
 <div class="special-deals">
 	<div class="container">
-		<h2>Special Deals</h2>
+		<h2>Dịch vụ</h2>
 		<div class="w3agile_special_deals_grids">
 			<div class="col-md-7 w3agile_special_deals_grid_left">
 				<div class="w3agile_special_deals_grid_left_grid">
-					<img src="images/26.jpg" alt=" " class="img-responsive" />
+					<img src="images/doboibanner.jpg" alt=" " class="img-responsive" />
 					<div class="w3agile_special_deals_grid_left_grid_pos1">
 						<h5>
 							10%<span>Sale</span>
@@ -54,7 +67,7 @@
 					</div>
 					<div class="w3agile_special_deals_grid_left_grid_pos">
 						<h4>
-							Chúng tôi đề nghị<span>những sản phẩm tốt nhất</span>
+							<!-- Chúng tôi đề nghị<span>những sản phẩm tốt nhất</span> -->
 						</h4>
 					</div>
 				</div>
@@ -101,13 +114,13 @@
 				</script>
 			</div>
 			<div class="col-md-5 w3agile_special_deals_grid_right">
-				<img src="images/25.jpg" alt=" " class="img-responsive" />
+				<img src="images/doboinamnu.jpg" alt=" " class="img-responsive" />
 				<div class="w3agile_special_deals_grid_right_pos">
 					<h4>
-						Women's <span>Special</span>
+						<!-- Đồ bơi <span>Nam Nữ</span> -->
 					</h4>
 					<h5>
-						save up <span>to</span> 30%
+						<!-- save up <span>to</span> 30% -->
 					</h5>
 				</div>
 			</div>
@@ -166,23 +179,4 @@
 	</div>
 </div>
 <!-- //top-brands -->
-<!-- newsletter -->
-<div class="newsletter">
-	<div class="container">
-		<div class="col-md-6 w3agile_newsletter_left">
-			<h3>Newsletter</h3>
-			<p>Excepteur sint occaecat cupidatat non proident, sunt.</p>
-		</div>
-		<div class="col-md-6 w3agile_newsletter_right">
-			<form action="#" method="post">
-				<input type="email" name="Email" value="Email"
-					onfocus="this.value = '';"
-					onblur="if (this.value == '') {this.value = 'Email';}" required="">
-				<input type="submit" value="" />
-			</form>
-		</div>
-		<div class="clearfix"></div>
-	</div>
-</div>
-<!-- //newsletter -->
 <%@ include file="footer.jsp"%>

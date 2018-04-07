@@ -72,7 +72,7 @@
 		</div>
 		<div class="container">
 			<p>
-				&copy; 2016 Women's Fashion. All rights reserved | Design by <a
+				&copy; All rights reserved | Design by <a
 					href="http://w3layouts.com/">W3layouts</a>
 			</p>
 		</div>
@@ -80,3 +80,4 @@
 </div>
 <!-- //footer -->
 </body>
+</html>

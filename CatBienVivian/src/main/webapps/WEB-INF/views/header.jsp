@@ -19,9 +19,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="application/x-javascript">	
+<script type="application/x-javascript">
+		
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } 
+
 </script>
 
 <link
@@ -46,14 +48,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link rel="stylesheet"
 	href='<%=contextPath + "/css/jquery.countdown.css"%>' />
 <!-- //countdown -->
-<!-- cart -->
-<script src='<%=contextPath + "/js/simpleCart.min.js"%>'></script>
 
 <!-- cart -->
 <!-- for bootstrap working -->
 <script type="text/javascript"
-	src='<%=contextPath + "/js/bootstrap-3.1.1.min.js"%>'></script>
-
+	src='<%=contextPath + "/js/bootstrap-3.1.1.min.js"%>'></script>	
 <!-- //for bootstrap working -->
 <link href='//fonts.googleapis.com/css?family=Glegoo:400,700'
 	rel='stylesheet' type='text/css'>
@@ -72,121 +71,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	});
 </script>
 <!-- //end-smooth-scrolling -->
-
-<!-- Load cart -->
-<script type="text/javascript">
-	var cartCount;
-	var cartTotal;
-	function loadItemFromCart(trigger) {
-		var itemAdded;
-
-		var cartIsEmpty = $('.cd-cart-container').hasClass('empty');
-
-		cart = JSON.parse(localStorage.getItem('cart'));
-		if (cart.products.length != "0") {
-
-			$
-					.each(
-							cart.products,
-							function(i, item) {
-								itemAdded = $('<li class="product">'
-										+ '<div class="product-image">'
-										+ '<a href="#0">'
-										+ '<img src="<%= contextPath + "/img/product-preview.png"%>" alt="placeholder">'
-										+ '</a>' + '</div>'
-										+ '<div class="product-details">'
-										+ '<h3><a href="#0">'
-										+ cart.products[i].name
-										+ '</a></h3>'
-										+ '<span class="price">'
-										+ cart.products[i].price
-										+ '</span>'
-										+ '<div hidden class="id">'
-										+ cart.products[i].id
-										+ '</div>'
-										+ '<div class="actions">'
-										+ '<a href="#0" class="delete-item">Delete</a>'
-										+ '<div class="quantity">'
-										+ '<label for="cd-product-'+ cart.products[i].id +'">Qty</label>'
-										+ '<span class="select">'
-										+ '<select id="cd-product-'+ cart.products[i].id +'" name="quantity">'
-										+ '<option value="1">1</option>'
-										+ '<option value="2">2</option>'
-										+ '<option value="3">3</option>'
-										+ '<option value="4">4</option>'
-										+ '<option value="5">5</option>'
-										+ '<option value="6">6</option>'
-										+ '<option value="7">7</option>'
-										+ '<option value="8">8</option>'
-										+ '<option value="9">9</option>'
-										+ '</select>'
-										+ '</span>'
-										+ '</div>'
-										+ '</div>' + '</div>' + '</li>');
-								$('.cd-cart-container').find('.body')
-										.find('ul').eq(0).prepend(itemAdded);
-								$(
-										'#cd-product-' + cart.products[i].id
-												+ ' option[value='
-												+ cart.products[i].quantity
-												+ ']').attr('selected',
-										'selected');
-								//update number of items 
-								updateCartCount(cartIsEmpty,
-										cart.products[i].quantity);
-								//update total price
-								updateCartTotal(cart.products[i].price
-										* cart.products[i].quantity, true);
-								$('.cd-cart-container').removeClass('empty');
-							})
-		}
-		return true;
-	}
-	function updateCartCount(emptyCart, quantity) {
-		cartCount = $('.cd-cart-container').children('.cd-cart-trigger')
-				.children('.count');
-		if (typeof quantity === 'undefined') {
-			var actual = Number(cartCount.find('li').eq(0).text()) + 1;
-			var next = actual + 1;
-
-			if (emptyCart) {
-				cartCount.find('li').eq(0).text(actual);
-				cartCount.find('li').eq(1).text(next);
-			} else {
-				cartCount.addClass('update-count');
-
-				setTimeout(function() {
-					cartCount.find('li').eq(0).text(actual);
-				}, 150);
-
-				setTimeout(function() {
-					cartCount.removeClass('update-count');
-				}, 200);
-
-				setTimeout(function() {
-					cartCount.find('li').eq(1).text(next);
-				}, 230);
-			}
-		} else {
-			var actual = Number(cartCount.find('li').eq(0).text()) + quantity;
-			var next = actual + 1;
-
-			cartCount.find('li').eq(0).text(actual);
-			cartCount.find('li').eq(1).text(next);
-		}
-	}
-	function updateCartTotal(price, bool) {
-		cartTotal = $('.cd-cart-container').find('.checkout').find('span');
-		bool ? cartTotal.text((Number(cartTotal.text()) + Number(price))
-				.toFixed(2)) : cartTotal
-				.text((Number(cartTotal.text()) - Number(price)).toFixed(2));
-	}
+<script language="javascript">
+function start(){
+	loadItemFromCart();
+	loadCart();
+}
 </script>
+<!-- Load cart -->
+<script type="text/javascript"
+	src='<%=contextPath + "/js/loadCart.js"%>'></script>
 <!-- /load cart -->
 
 </head>
 
-<body onload="loadItemFromCart()">
+<body onload="start()">
 	<!-- header -->
 	<div class="modal fade" id="myModal88" tabindex="-1" role="dialog"
 		aria-labelledby="myModal88" aria-hidden="true">
@@ -282,7 +180,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							thao</span></a>
 				</h1>
 			</div>
-<%-- 			<div class="cart box_1">
+			<%-- 			<div class="cart box_1">
 				<a href="checkout.html">
 					<div class="total">
 						<span class="simpleCart_total"></span> (<span
@@ -320,37 +218,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							data-toggle="dropdown">Products <b class="caret"></b></a>
 							<ul class="dropdown-menu multi-column columns-3">
 								<div class="row">
-									<div class="col-sm-3">
+									<div class="col-sm-6">
 										<ul class="multi-column-dropdown">
 											<h6>Đồ bơi</h6>
-											<li><a href="#">Đồ bơi cho nam<span>New</span></a></li>
-											<li><a href="<%=contextPath%>/swimsuit/female">Đồ
-													bơi cho nữ <span>New</span>
+											<li><a href="<%=contextPath%>/shop/maleSwimsuit">Đồ
+													bơi cho nam<span>New</span>
 											</a></li>
-											<li><a href="#">Đồ bơi cho bé nam <span>New</span></a></li>
-											<li><a href="#">Đồ bơi cho bé nữ <span>New</span></a></li>
+											<li><a href="<%=contextPath%>/shop/femaleSwimsuit">Đồ
+													bơi cho nữ </a></li>
+											<li><a href="<%=contextPath%>/shop/childrenSwimsuit">Đồ
+													bơi cho trẻ em </a></li>
 										</ul>
 									</div>
-									<div class="col-sm-3">
+									<div class="col-sm-6">
 										<ul class="multi-column-dropdown">
-											<h6>Đồ Gym/Yoga</h6>
-											<li><a href="#">Đồ gym nam <span>New</span></a></li>
-											<li><a href="#">Đồ gym nữ <span>New</span></a></li>
-										</ul>
-									</div>
-									<div class="col-sm-3">
-										<ul class="multi-column-dropdown">
-											<h6>Dụng cụ bơi lội</h6>
-											<li><a href="#">Kính bơi</a></li>
-											<li><a href="#">Kem chống nắng</a></li>
-											<li><a href="#">Nón bơi</a></li>
-											<li><a href="#">Vòi hơi</a></li>
-											<li><a href="#">Chân vịt</a></li>
-										</ul>
-									</div>
-									<div class="col-sm-3">
-										<ul class="multi-column-dropdown">
-											<h6>Khác</h6>
+											<h6>Đồ thể thao</h6>
 											<li><a href="#">Đồ Aerobic</a></li>
 											<li><a href="#">Đồ thể dục cổ động</a></li>
 											<li><a href="#">Đồ ba lê</a></li>
@@ -359,7 +241,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									<div class="clearfix"></div>
 								</div>
 							</ul></li>
-						<li><a href="#">About Us</a></li>
+						<li><a href="<%=request.getContextPath()%>/about">About
+								Us</a></li>
 						<li><a href="#">Contact</a></li>
 						<li><a href="#">Mail Us</a></li>
 					</ul>
@@ -367,8 +250,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</nav>
 		</div>
 	</div>
-<!-- 	<a href="#0" class="cd-add-to-cart" data-price="25.99">Add To Cart</a> -->
-	 <div class="cd-cart-container empty">
+	<!-- 	<a href="#0" class="cd-add-to-cart" data-price="25.99">Add To Cart</a> -->
+	<div class="cd-cart-container empty">
 		<a href="#0" class="cd-cart-trigger"> Cart
 			<ul class="count">
 				<li>0</li>
@@ -379,18 +262,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="cd-cart">
 			<div class="wrapper">
 				<header>
-					<h2>Cart</h2>
+					<h2>Giỏ hàng</h2>
 				</header>
-
 				<div class="body">
 					<ul>
 					</ul>
 				</div>
-
 				<footer>
-					<a href="#0" class="checkout btn"><em>Checkout - $<span>0</span></em></a>
+					<a href="<%=request.getContextPath()%>/checkout" class="checkout btn"><em>Thanh toán - <span>0</span> VNĐ</em></a>
 				</footer>
 			</div>
 		</div>
-	</div> 
+	</div>
 	<!-- //header -->

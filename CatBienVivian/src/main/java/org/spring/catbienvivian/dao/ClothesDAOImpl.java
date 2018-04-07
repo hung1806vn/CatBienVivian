@@ -57,20 +57,34 @@ public class ClothesDAOImpl implements ClothesDAO {
 
 	@Transactional(readOnly = true)
 	public List<Clothes> getFemaleSwimSuit() {
-		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Clothes> sql = entityManager.createQuery(
+				"select t from Clothes t where t.clothesType=" + ClothesCategoryEnum.SWIMSUIT.clothesCategory()
+						+ "AND t.isDeleted=" + TrueFalseEnum.FALSE.toInt() + "AND t.clothesGender="
+						+ TrueFalseEnum.FALSE.toInt() + "AND t.clothesAge=" + TrueFalseEnum.TRUE.toInt(),
+				Clothes.class);
+		List<Clothes> listFemaleSwimSuits = sql.getResultList();
+		return listFemaleSwimSuits;
 	}
 
 	@Transactional(readOnly = true)
 	public List<Clothes> getMaleSwimSuit() {
-		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Clothes> sql = entityManager
+				.createQuery(
+						"select t from Clothes t where t.clothesType=" + ClothesCategoryEnum.SWIMSUIT.clothesCategory()
+								+ "AND t.isDeleted=" + TrueFalseEnum.FALSE.toInt() + "AND t.clothesGender="
+								+ TrueFalseEnum.TRUE.toInt() + "AND t.clothesAge=" + TrueFalseEnum.TRUE.toInt(),
+						Clothes.class);
+		List<Clothes> listMaleSwimSuits = sql.getResultList();
+		return listMaleSwimSuits;
 	}
 
 	@Transactional(readOnly = true)
 	public List<Clothes> getChildrenSwimSuit() {
-		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Clothes> sql = entityManager.createQuery("select t from Clothes t where t.clothesType="
+				+ ClothesCategoryEnum.SWIMSUIT.clothesCategory() + "AND t.isDeleted=" + TrueFalseEnum.FALSE.toInt()
+				+ "AND t.clothesAge=" + TrueFalseEnum.FALSE.toInt(), Clothes.class);
+		List<Clothes> listChildrenSwimSuits = sql.getResultList();
+		return listChildrenSwimSuits;
 	}
 
 	@Transactional(readOnly = true)

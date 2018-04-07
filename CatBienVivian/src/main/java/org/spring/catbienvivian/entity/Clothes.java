@@ -2,6 +2,8 @@ package org.spring.catbienvivian.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -56,8 +58,8 @@ public class Clothes implements Serializable {
 	private boolean isDeleted;
 
 	//bi-directional many-to-one association to ClothesImage
-	@OneToMany(mappedBy="clothes")
-	private List<ClothesImage> clothesImages;
+	@OneToMany(mappedBy="clothes", cascade = CascadeType.ALL, orphanRemoval=true, fetch = FetchType.EAGER)
+	private List<ClothesImage> clothesImages = new ArrayList<>();
 
 	public Clothes() {
 	}

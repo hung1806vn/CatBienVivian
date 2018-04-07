@@ -63,20 +63,17 @@ public class ClothesServiceImpl implements ClothesService {
 
 	@Transactional
 	public List<Clothes> getFemaleSwimSuit() {
-		// TODO Auto-generated method stub
-		return null;
+		return clothesDAO.getFemaleSwimSuit();
 	}
 
 	@Transactional
 	public List<Clothes> getMaleSwimSuit() {
-		// TODO Auto-generated method stub
-		return null;
+		return clothesDAO.getMaleSwimSuit();
 	}
 
 	@Transactional
 	public List<Clothes> getChildrenSwimSuit() {
-		// TODO Auto-generated method stub
-		return null;
+		return clothesDAO.getChildrenSwimSuit();
 	}
 
 	@Transactional
